@@ -17,6 +17,7 @@ X_PADDING = 15
 Y_PADDING = 15
 MAX_HEIGHT = 110
 STROKE_WIDTH = 3
+SPACE_WIDTH = 20
 
 FONT_NAME = "Neucha-Regular.ttf"
 FONT_SIZE = 80
@@ -40,12 +41,11 @@ for _range in RANGES:
     h = 0
     dim = get_size(chr(ch), font)
     if ch == 0x20:
-      drawer.rectangle([X_OFFSET, 0, X_OFFSET + 20 + (X_PADDING * 2), MAX_HEIGHT], outline=GRID_COLOR)
-      X_OFFSET += 20 + X_PADDING * 2
+      drawer.rectangle([X_OFFSET, 0, X_OFFSET + SPACE_WIDTH + (X_PADDING * 2), MAX_HEIGHT], outline=GRID_COLOR)
+      X_OFFSET += SPACE_WIDTH + X_PADDING * 2
       continue
     if not dim:
       ch = 0x0023
-      w, h = get_size(chr(ch), font)
     w, h = get_size(chr(ch), font)
     drawer.text((X_OFFSET + X_PADDING, 0 + Y_PADDING), chr(ch), font=font, stroke_width=STROKE_WIDTH, stroke_fill=BORDER_COLOR, fill=TEXT_COLOR)
     drawer.rectangle([X_OFFSET, 0, X_OFFSET + w + (X_PADDING * 2), MAX_HEIGHT], outline=GRID_COLOR)
