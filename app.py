@@ -13,11 +13,13 @@ def get_size(text_string, font):
 
 
 X_OFFSET = 0
-X_PADDING = 20
-Y_PADDING = 20
-MAX_HEIGHT = 100
+X_PADDING = 15
+Y_PADDING = 15
+MAX_HEIGHT = 110
+STROKE_WIDTH = 3
 
 FONT_NAME = "Neucha-Regular.ttf"
+FONT_SIZE = 80
 GRID_COLOR = "#FF00FF"
 TEXT_COLOR = "#FFFFFF"
 BORDER_COLOR = "#00FFFF"
@@ -29,7 +31,7 @@ RANGES = [
 
 wrapper = Image.new("RGBA", (15000, MAX_HEIGHT + 1))
 drawer = ImageDraw.Draw(wrapper)
-font = ImageFont.truetype(FONT_NAME, 70)
+font = ImageFont.truetype(FONT_NAME, FONT_SIZE)
 
 for _range in RANGES:
   start, end = _range
@@ -45,7 +47,7 @@ for _range in RANGES:
       ch = 0x0023
       w, h = get_size(chr(ch), font)
     w, h = get_size(chr(ch), font)
-    drawer.text((X_OFFSET + X_PADDING, 0 + Y_PADDING), chr(ch), font=font, stroke_width=4, stroke_fill=BORDER_COLOR, fill=TEXT_COLOR)
+    drawer.text((X_OFFSET + X_PADDING, 0 + Y_PADDING), chr(ch), font=font, stroke_width=STROKE_WIDTH, stroke_fill=BORDER_COLOR, fill=TEXT_COLOR)
     drawer.rectangle([X_OFFSET, 0, X_OFFSET + w + (X_PADDING * 2), MAX_HEIGHT], outline=GRID_COLOR)
     X_OFFSET += w + X_PADDING * 2
 
