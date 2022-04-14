@@ -16,6 +16,8 @@ FONT_NAME = "Neucha-Regular.ttf"
 FONT_SIZE = 80
 FONT_STROKE_WIDTH = 3
 
+GRID_STROKE_WIDTH = 1
+
 GRID_COLOR = "#FF00FF"
 TEXT_COLOR = "#FFFFFF"
 BORDER_COLOR = "#00FFFF"
@@ -60,7 +62,7 @@ PATCH_FONT = [
 ]
 
 if __name__ == "__main__":
-    wrapper = Image.new("RGBA", (X_MAX, Y_MAX + 1))
+    wrapper = Image.new("RGBA", (X_MAX, Y_MAX + GRID_STROKE_WIDTH))
     drawer = ImageDraw.Draw(wrapper)
     font = ImageFont.truetype(FONT_NAME, FONT_SIZE)
 
@@ -80,7 +82,7 @@ if __name__ == "__main__":
             box_y0 = Y_MIN - Y_PADDING
             box_x1 = text_box[2] + X_PADDING
             box_y1 = Y_MAX + Y_PADDING
-            drawer.rectangle(((box_x0, box_y0), (box_x1, box_y1)), outline=GRID_COLOR)
+            drawer.rectangle(((box_x0, box_y0), (box_x1, box_y1)), outline=GRID_COLOR, width=GRID_STROKE_WIDTH)
             X_OFFSET = text_box[2] + FONT_STROKE_WIDTH + X_PADDING * 2
 
     wrapper.save("grid.png", "PNG")
